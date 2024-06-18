@@ -21,7 +21,7 @@
             </div>
 
             <div class="col-md-9">
-                <form action="" method="POST">
+                <form action="{% url 'cadastro' %}" method="POST">{% csrf_token %}
                 <label>Primeiro nome</label>
                 <br>
                 <input type="text" class="input-default" name="primeiro_nome">
@@ -42,7 +42,7 @@
                 <br>
                 <label>Senha</label>
                 <br>
-                <input type="text" class="input-default w100" name="senha">
+                <input type="password" class="input-default w100" name="senha">
             </div>
 
             <div class="col-md-4">
@@ -53,12 +53,12 @@
                 <br>
                 <label>Confirmar senha</label>
                 <br>
-                <input type="text" class="input-default w100" name="confirmar_senha">
+                <input type="password" class="input-default w100" name="confirmar_senha">
             </div>
             
         </div>
         <br>
-        <input type="submit" class="btn-default">
+        <input type="submit" class="btn-default" value="Cadastrar">
     </form>
     </div>
 {% endblock %}
