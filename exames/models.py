@@ -1,8 +1,8 @@
 from django.db import models
 
 # Create your models here.
-from django.db import models
-from django.contrib.auth.models import User
+from django.db import models # type: ignore
+from django.contrib.auth.models import User # type: ignore
 
 class TiposExames(models.Model):
     tipo_choices = (
@@ -29,7 +29,7 @@ class SolicitacaoExame(models.Model):
     status = models.CharField(max_length=2, choices=choice_status)
     resultado = models.FileField(upload_to="resultados", null=True, blank=True)
     requer_senha = models.BooleanField(default=False)
-    senha = models.CharField(max_length=6, null=True, blank=True)
+    senha = models.CharField(max_length=16, null=True, blank=True)
 
     def __str__(self):
         return f'{self.usuario} | {self.exame.nome}'
