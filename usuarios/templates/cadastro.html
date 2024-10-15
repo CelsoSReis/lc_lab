@@ -6,61 +6,118 @@
 {% endblock 'head' %}
 
 {% block 'conteudo' %}
-    <br>
-    <br>
-    <div class="container">
-        <h3 class="font-destaque">Cadastre-se</h3>
 
-        <div class="row">
-            <div class="col-md-3" style="text-align: center">
-                <img src="{% static 'geral/img/logo.png' %}" alt="">
-                <h3>VitaLab</h3>
+<div class="page-inner">
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+            <div class="card-header">
+                <div class="card-title">Cadastro de Usuários</div>
             </div>
-
-            <div class="col-md-9">
+            <div class="card-body">
                 <form action="{% url 'cadastro' %}" method="POST">{% csrf_token %}
-                <label>Primeiro nome</label>
-                <br>
-                <input type="text" class="input-default" name="primeiro_nome">
-                <br>
-                <br>
-                <label>Último nome</label>
-                <br>
-                <input type="text" class="input-default" name="ultimo_nome">
+                <div class="row">
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="form-group">
+                        <label for="largeInput">Primeiro Nome</label>
+                        <input
+                        type="text"
+                        class="form-control"
+                        id="largeInput"
+                        name="primeiro_nome"
+                        placeholder="Primeiro Nome"
+                        />
+                    </div>
+
+                   
+                    <div class="form-group">
+                        <label for="largeInput">CPF</label>
+                        <input
+                        type="text"
+                        class="form-control"
+                        id="largeInput"
+                        placeholder="CPF"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        placeholder="Senha"
+                    />
+                    </div>
+                    
+                <!--
+                    <div class="form-check">
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="flexCheckDefault"
+                    />
+                    <label
+                        class="form-check-label"
+                        for="flexCheckDefault"
+                    >
+                        Agree with terms and conditions
+                    </label>
+                    </div>-->
+                </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="form-group">
+                            <label for="largeInput">Último Nome</label>
+                            <input
+                            type="text"
+                            class="form-control"
+                            id="largeInput"
+                            name="ultimo_nome_nome"
+                            placeholder="Último Nome"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email2">E-mail</label>
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="email2"
+                                placeholder="E-mail"
+                            />                    
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Confirmar Senha</label>
+                                <input
+                                type="password"
+                                class="form-control"
+                                id="password"
+                                placeholder="Confirme sua Senha..."
+                                />
+                            </div>
+                    </div>
+                    <div class="card-action">
+                        {% if messages %}
+                        <br>
+                            {% for message in messages %}
+                                <div class="col-md-8 alert {{ message.tags }}">{{ message }}</div>
+                            {% endfor %}
+                        {% endif %}
+                        <br>
+                        <button class="btn btn-success">Salvar</button>
+                        <button class="btn btn-danger">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+            </div>
+            
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-md-4">
-                <label>Username</label>
-                <br>
-                <input type="text" class="input-default w100" name="username">
-                <br>
-                <br>
-                <label>Senha</label>
-                <br>
-                <input type="password" class="input-default w100" name="senha">
-            </div>
-
-            <div class="col-md-4">
-                <label>E-mail</label>
-                <br>
-                <input type="text" class="input-default w100" name="email">
-                <br>
-                <br>
-                <label>Confirmar senha</label>
-                <br>
-                <input type="password" class="input-default w100" name="confirmar_senha">
-            </div>
-        </div>
-        {% if messages %}
-        <br>
-            {% for message in messages %}
-                <div class="col-md-8 alert {{ message.tags }}">{{ message }}</div>
-            {% endfor %}
-        {% endif %}
-        <br>
-        <input type="submit" class="btn-default" value="Cadastrar">
-    </form>
     </div>
+</div>
+
 {% endblock %}
