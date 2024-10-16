@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block 'head' %}
-    <link href="{% static 'usuarios/css/css.css' %}" rel="stylesheet">
+    
 {% endblock 'head' %}
 
 {% block 'conteudo' %}
@@ -28,6 +28,7 @@
                         id="largeInput"
                         name="primeiro_nome"
                         placeholder="Primeiro Nome"
+                        required
                         />
                     </div>
 
@@ -39,6 +40,7 @@
                         class="form-control"
                         id="largeInput"
                         placeholder="CPF"
+                        required
                         />
                     </div>
 
@@ -49,6 +51,7 @@
                         class="form-control"
                         id="password"
                         placeholder="Senha"
+                        required
                     />
                     </div>
                     
@@ -77,6 +80,7 @@
                             id="largeInput"
                             name="ultimo_nome_nome"
                             placeholder="Último Nome"
+                            required
                             />
                         </div>
 
@@ -87,6 +91,7 @@
                                 class="form-control"
                                 id="email2"
                                 placeholder="E-mail"
+                                required
                             />                    
                             </div>
 
@@ -97,6 +102,7 @@
                                 class="form-control"
                                 id="password"
                                 placeholder="Confirme sua Senha..."
+                                required
                                 />
                             </div>
                     </div>
@@ -108,8 +114,8 @@
                             {% endfor %}
                         {% endif %}
                         <br>
-                        <button class="btn btn-success">Salvar</button>
-                        <button class="btn btn-danger">Cancelar</button>
+                        <input class="btn btn-success" type="submit" value="   Salvar  ">
+                        <a href="#" class="btn btn-danger">Cancelar</a>
                     </div>
                 </div>
             </form>
