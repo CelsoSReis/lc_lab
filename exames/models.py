@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+# Create your models here.(Tabelas do banco de dados)
 from django.db import models # type: ignore
 from django.contrib.auth.models import User # type: ignore
 
