@@ -1,4 +1,4 @@
-{% extends "bases/base.html" %}
+{% extends "bases/exames.html" %}
 {% load static %}
 
 {% block 'head' %}
@@ -16,110 +16,32 @@
                 </div>
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-md-6 col-lg-4">
-                      
-                      <div class="form-group">
-                        
-                          
-                        
+                    <div class="col-md-6 col-lg-8">
 
-                        <label for="exampleFormControlSelect2"
-                          >Selecione os exames a serem solicitados</label>
-                          <label for="exampleFormControlSelect1"
-                          >Example select</label
-                        >
-                        <select
-                          class="form-select"
-                          id="exampleFormControlSelect1"
-                        >
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
-                        </select>
-                        
+                      <div class="form-group">
+
+                        <label for="exampleFormControlSelect2">Selecione os exames a serem solicitados</label>
+                         
+                               <div class="d-flex text-left align-items-center w-100">
+                                <select class="form-select" id="multiple-checkboxes" multiple="multiple">
+                                  <option value="php">PHP</option>
+                                  <option value="javascript">JavaScript</option>
+                                  <option value="java">Java</option>
+                                  <option value="sql">SQL</option>
+                                  <option value="jquery">Jquery</option>
+                                  <option value=".net">.Net</option>
+                                </select>
+                              </div>        
 
                       </div>
                       
                     </div>
-                    <div class="col-md-6 col-lg-4">
                       
-                      <div class="form-group">
-                        <label class="form-label">Selecione os exames a serem solicitados</label>
-                        <div class="selectgroup selectgroup-pills">
-                          <label class="selectgroup-item">
-                            <input
-                              type="checkbox"
-                              name="value"
-                              value="HTML"
-                              class="selectgroup-input"
-                              checked=""
-                            />
-                            <span class="selectgroup-button">EXAME 1</span>
-                          </label>
-                          <label class="selectgroup-item">
-                            <input
-                              type="checkbox"
-                              name="value"
-                              value="CSS"
-                              class="selectgroup-input"
-                            />
-                            <span class="selectgroup-button">EXAME 2</span>
-                          </label>
-                          <label class="selectgroup-item">
-                            <input
-                              type="checkbox"
-                              name="value"
-                              value="PHP"
-                              class="selectgroup-input"
-                            />
-                            <span class="selectgroup-button">EXAME 3</span>
-                          </label>
-                          <label class="selectgroup-item">
-                            <input
-                              type="checkbox"
-                              name="value"
-                              value="JavaScript"
-                              class="selectgroup-input"
-                            />
-                            <span class="selectgroup-button">EXAME 4</span>
-                          </label>
-                          <label class="selectgroup-item">
-                            <input
-                              type="checkbox"
-                              name="value"
-                              value="Ruby"
-                              class="selectgroup-input"
-                            />
-                            <span class="selectgroup-button">EXAME 5</span>
-                          </label>
-                          <label class="selectgroup-item">
-                            <input
-                              type="checkbox"
-                              name="value"
-                              value="Ruby"
-                              class="selectgroup-input"
-                            />
-                            <span class="selectgroup-button">EXAME 6</span>
-                          </label>
-                          <label class="selectgroup-item">
-                            <input
-                              type="checkbox"
-                              name="value"
-                              value="C++"
-                              class="selectgroup-input"
-                            />
-                            <span class="selectgroup-button">EXAME 7</span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
+                    
                     <div class="col-md-6 col-lg-4">
                       <label class="mb-3"><b>Orçamento</b></label>
                     
-                    
-                      
+                                         
                     </div>
                   </div>
                 </div>
@@ -131,13 +53,10 @@
             </div>
           </div>
         </div>
-      </div>
-
-      
-    </div>
-
-    
+      </div>   
+    </div>   
   </div>
+
 {% endblock 'conteudo' %}
 
 <br>
