@@ -2,62 +2,9 @@
 {% load static %}
 
 {% block 'head' %}
-
 {% endblock 'head' %}
 
-{% block 'conteudo' %}
-      <div class="container">
-        <div class="page-inner">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <div class="card-title">Solicitar Exames</div>
-                </div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-6 col-lg-8">
-
-                      <div class="form-group">
-
-                        <label for="exampleFormControlSelect2">Selecione os exames a serem solicitados</label>
-                         
-                               <div class="d-flex text-left align-items-center w-100">
-                                <select class="form-select" id="multiple-checkboxes" multiple="multiple">
-                                  <option value="php">PHP</option>
-                                  <option value="javascript">JavaScript</option>
-                                  <option value="java">Java</option>
-                                  <option value="sql">SQL</option>
-                                  <option value="jquery">Jquery</option>
-                                  <option value=".net">.Net</option>
-                                </select>
-                              </div>        
-
-                      </div>
-                      
-                    </div>
-                      
-                    
-                    <div class="col-md-6 col-lg-4">
-                      <label class="mb-3"><b>Orçamento</b></label>
-                    
-                                         
-                    </div>
-                  </div>
-                </div>
-                <div class="card-action">
-                  <button class="btn btn-success">Adicionar Exames</button>
-                  <button class="btn btn-danger">Cancelar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>   
-    </div>   
-  </div>
-
-{% endblock 'conteudo' %}
+{% block 'conteudoexames' %}{% endblock %}
 
 <br>
     <br>
