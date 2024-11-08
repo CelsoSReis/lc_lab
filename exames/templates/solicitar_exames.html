@@ -1,10 +1,72 @@
-{% extends "bases/exames.html" %}
+{% extends "bases/base.html" %}
 {% load static %}
 
 {% block 'head' %}
 {% endblock 'head' %}
 
-{% block 'conteudoexames' %}{% endblock %}
+{% block 'conteudo' %}
+<div class="container">
+    <div class="page-inner">
+        <div class="page-header">
+            <h3 class="fw-bold mb-3">Solicitação de Exames</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-8">
+                                <div class="card-title">Exames</div>
+                                <div class="form-group">
+                                    <form action="{% url 'solicitar_exames' %}" method="POST">{% csrf_token %}
+                                        <select multiple class="form-control" id="exampleFormControlSelect2">
+                                        {% for exame in tipos_exames %}
+                                            <option value="{{exame.id}}">{{exame}}</option>
+                                        {% endfor %}  
+                                        </select>
+                                        <div class="card-action">
+                                            <button class="btn btn-success" name="ultimo_nome">Adicionar Exames</button>
+                                            <button class="btn btn-danger">Cancelar</button>
+                                        </div>
+                                    </form>
+                                </div>                 
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card-title">Orçamento</div>
+                                {% for exame in solicitacao_exames %}
+                                    <div style="font-size: 20px; font-weight: bold">
+                                        {% if exame.disponivel %}
+                                            <img src="{% static 'exames/img/check.png' %}">
+                                        {% else %}
+                                            <img src="{% static 'exames/img/exit.png' %}">
+                                        {% endif %}
+                                        {{exame.nome}}
+                                        <span class="previa-preco">
+                                            {{exame.preco}}
+                                        </span>
+                                    </div>
+                                {% endfor %}
+                                <hr style="color: black;">
+                                <div>
+                                    <label>Total: </label><label class="previa-preco">R$ {{preco_total}}</label>
+                                </div>
+                                <br>
+                                <h5>Data: 08 de Setembro</h5>
+                                <br>
+                                <form action="" method="POST">
+                                
+                                    <button class="btn btn-success">Concluir Pedidos</button>                      
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
 
 <br>
     <br>
@@ -47,8 +109,6 @@
                         </span>
                     </div>
                 {% endfor %}
-                   
-                    
                     <hr style="color: white;">
                     <div>
                         <label>Total: </label><label class="previa-preco">R$ {{preco_total}}</label>
@@ -61,9 +121,6 @@
                     <form action="" method="POST">
                         <button class="btn-secundario">Fechar pedido</button>
                     </form>
-                    
-              
-
             </div>
         </div>
     </div>
