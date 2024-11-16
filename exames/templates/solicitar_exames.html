@@ -19,9 +19,10 @@
                                 <div class="card-title">Exames</div>
                                 <div class="form-group">
                                     <form action="{% url 'solicitar_exames' %}" method="POST">{% csrf_token %}
-                                        <select multiple class="form-control" id="exampleFormControlSelect2">
+                                        <select multiple name="exames" class="form-control" id="exampleFormControlSelect2">
+                                        <!--EXIBE EXAMES DA TABELA tipos_exames-->
                                         {% for exame in tipos_exames %}
-                                            <option value="{{exame.id}}">{{exame}}</option>
+                                            <option value="{{exame.id}}">{{exame}} - R$ {{exame.preco}}</option>
                                         {% endfor %}  
                                         </select>
                                         <div class="card-action">
@@ -33,19 +34,21 @@
                             </div>
                             <div class="col-md-6 col-lg-4">
                                 <div class="card-title">Orçamento</div>
+                                {% if solicitacao_exames %}
                                 {% for exame in solicitacao_exames %}
                                     <div style="font-size: 20px; font-weight: bold">
                                         {% if exame.disponivel %}
-                                            <img src="{% static 'exames/img/check.png' %}">
+                                            <img src="{% static 'exames/img/check.png' %}" width="20px">
                                         {% else %}
-                                            <img src="{% static 'exames/img/exit.png' %}">
+                                            <img src="{% static 'exames/img/exit.png' %}" width="20px">
                                         {% endif %}
                                         {{exame.nome}}
                                         <span class="previa-preco">
-                                            {{exame.preco}}
+                                            R${{exame.preco}}
                                         </span>
                                     </div>
                                 {% endfor %}
+                                
                                 <hr style="color: black;">
                                 <div>
                                     <label>Total: </label><label class="previa-preco">R$ {{preco_total}}</label>
@@ -53,10 +56,16 @@
                                 <br>
                                 <h5>Data: 08 de Setembro</h5>
                                 <br>
-                                <form action="" method="POST">
-                                
+                                <!--Forms concluir pedido-->
+                                <form action="{% url "fechar_pedido" %}" method="POST">{% csrf_token %} 
+                                    {% for exame in solicitacao_exames  %}
+                                        <input type="hidden" value="{{exame.id}}" name="exames">
+                                    {% endfor %}
                                     <button class="btn btn-success">Concluir Pedidos</button>                      
                                 </form>
+                                {% else %}
+                                    <h3>Nenhum Exame selecionado</h3>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
