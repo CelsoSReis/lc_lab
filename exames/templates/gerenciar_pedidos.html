@@ -17,6 +17,12 @@
               </div>
             </div>
             <div class="card-body">
+              {% if messages %}
+            <br>
+                {% for message in messages %}
+                  <div class="alert {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+              {% endif %}
               <!-- Modal -->
               <!--<div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -100,26 +106,26 @@
                       <th style="width: 10%">Ação</th>
                     </tr>
                   </thead>
+                  {% for pedidos in pedidos_exames %}
                     <tr>
-                      <td>01</td>
-                      <td>13/06/2024</td>
-                      <td>sangue</td>
+                      <td>{{pedidos.id}}</td>
+                      <td>{{pedidos.data}}</td>
                       <td>
-                        <div class="form-button-action">
-                          <button class="btn btn-danger btn-sm">Cancelar</button>
-                        </div>
+                        <select
+                            class="form-select form-control-sm"
+                            id="smallSelect"
+                          >
+                          {% for exame in pedidos.exames.all %}
+                            <option style="color: black"  value="">{{exame.exame.nome}}</option>
+                          {% endfor %}
+                          </select>
+                      </td>
+                      <td>
+                          <a href="{% url "cancelar_pedido" pedidos.id %}" class="btn-sm {% if not pedidos.agendado %}btn btn-warning disabled {% else %} btn btn-danger {% endif %}">{% if not pedidos.agendado %}Cancelado{% else %}Cancelar    *{% endif %}</a>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Sonya Frost</td>
-                      <td>Software Engineer</td>
-                      <td>Edinburgh</td>
-                      <td>
-                        <div class="form-button-action">
-                          <button class="btn btn-danger btn-sm">Cancelar</button>  
-                        </div>
-                      </td>
-                    </tr>
+                    {% endfor %}
+                    
                   </tbody>
                 </table>
               </div>
@@ -132,8 +138,7 @@
 </div>
 <!--   Core JS Files   -->
 <script src="{% static 'geral/assets/js/core/jquery-3.7.1.min.js' %}"></script>
-<script src="{% static 'geral/assets/js/core/popper.min.js' %}"></script>
-<script src="{% static 'geral/assets/js/core/bootstrap.min.js' %}"></script>
+
 
 <!-- jQuery Scrollbar -->
 <script src="{% static 'geral/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
