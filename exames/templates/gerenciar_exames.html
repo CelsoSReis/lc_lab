@@ -97,30 +97,35 @@
 
                             <div class="table-responsive">
                                 <table id="add-row" class="display table table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                    <th>Exame</th>
-                                    <th>Status</th>
-                                    
-                                    <th style="width: 10%">Resultado</th>
-                                    </tr>
-                                </thead>
-                                {% for exame in exames  %}
-                                    {% if  exame.exame.tipo == 'S' or exame.exame.tipo == 'I'%}
-                                    <tbody>
+                                    <thead>
                                         <tr>
-                                        <td>{{exame.exame.nome}}</td>
-                                        
-                                        <td>
-                                            <span class="badge badge-danger">{{exame.badge_template}}</span>
-                                        </td>
-                                        <td>
-                                            <a href="" class="btn-sm btn btn-primary">Abrir</a>
-                                        </td>
-                                        </tr>    
-                                    </tbody>
-                                    {% endif %}
-                                {% endfor %}
+                                            <th>Exame</th>
+                                            <th>Status</th>                                        
+                                            <th style="width: 10%">Resultado</th>
+                                        </tr>
+                                    </thead>
+                                   
+                                        <tbody>
+                                            {% for exame in exames  %}
+                                                {% if  exame.exame.tipo == 'S' or exame.exame.tipo == 'I'%}
+                                                    <tr>
+                                                        <td>{{exame.exame.nome}}</td>
+                                                        
+                                                        <td>
+                                                            {{exame.badge_template}}
+                                                        </td>
+                                                        <td>
+                                                            {% if exame.status == 'F' %}
+                                                                <a href="{% url "permitir_abrir_exame" exame.id %}" class="btn btn-primary" target="_blank">Abrir</a>
+                                                            {% else %}
+                                                                <a href="" class=" btn btn-light disabled">Em análise</a>
+                                                            {% endif %}
+                                                        </td>
+                                                    </tr>
+                                                {% endif %}
+                                            {% endfor %}    
+                                        </tbody>
+                                     
                                 </table>
                             </div>
                         </div>
