@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.messages import constants
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 
@@ -39,8 +39,7 @@ def cadastro(request):
         except:
             messages.add_message(request, constants.ERROR, 'Erro, contate o administrador do sistema!')
             return redirect('/usuarios/cadastro')
-
-
+            
         return redirect('/usuarios/cadastro')
 ## Função para logar usuários do sistema    
 def logar(request):
@@ -55,7 +54,13 @@ def logar(request):
         if user:
             login(request, user)
 						# Acontecerá um erro ao redirecionar por enquanto
-            return redirect('/')
+            return redirect('/exames/gerenciar_pedidos')
         else:
             messages.add_message(request, constants.ERROR, 'Usuario ou senha inválidos')
             return redirect('/usuarios/login')
+
+## LOGOUT
+def logout_view(request):
+    logout(request)
+    # Redirect to a success page.
+    return redirect('/usuarios/login')

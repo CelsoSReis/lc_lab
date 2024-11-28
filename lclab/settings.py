@@ -51,6 +51,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    ## Middleware função para não acessar urls quando o usuário não estiver logado
+    'lclab.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'lclab.urls'
