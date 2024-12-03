@@ -5,6 +5,9 @@ from django.db import models # type: ignore
 from django.contrib.auth.models import User # type: ignore
 # Converte badges de texto para html
 from django.utils.safestring import mark_safe
+# Biblioteca nativa do phyton para gerar tokens aleatórios
+from secrets import token_urlsafe
+
 
 class TiposExames(models.Model):
     tipo_choices = (
@@ -53,3 +56,25 @@ class PedidosExames(models.Model):
 
     def __str__(self):
         return f'{self.usuario} | {self.data}'
+    
+
+## Acesso médico
+
+class AcessoMedico(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    identificacao = models.CharField(max_length=50)
+    tempo_de_acesso = models.IntegerField() # Em horas
+    criado_em = models.DateTimeField()
+    data_exames_iniciais = models.DateField()
+    data_exames_finais = models.DateField()
+    token = models.CharField(max_length=20, null=True, blank=True)
+
+    def __str__(self):
+        return self.token
+    
+    def save(self, *args, **kwargs):
+        if not self.token:
+            #gera  token
+            self.token = token_urlsafe(6)
+
+        super(AcessoMedico, self).save(*args, **kwargs)
