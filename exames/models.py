@@ -7,7 +7,10 @@ from django.contrib.auth.models import User # type: ignore
 from django.utils.safestring import mark_safe
 # Biblioteca nativa do phyton para gerar tokens aleatórios
 from secrets import token_urlsafe
-
+# Importa data atual
+from django.utils import timezone
+# Criaintervalo de tempo para calculos com outro intervalo de tempo
+from datetime import timedelta
 
 class TiposExames(models.Model):
     tipo_choices = (
@@ -78,3 +81,12 @@ class AcessoMedico(models.Model):
             self.token = token_urlsafe(6)
 
         super(AcessoMedico, self).save(*args, **kwargs)
+    ## status exame
+    @property
+    def status(self):
+        return 'Expirado' if timezone.now() > (self.criado_em + timedelta(hours=self.tempo_de_acesso)) else 'Ativo'
+    
+    @property
+    def url(self):
+        #TODO: reverse
+        return f"http://127.0.0.1:8000/exames/acesso_medico/{self.token}"
