@@ -81,7 +81,7 @@ class AcessoMedico(models.Model):
             self.token = token_urlsafe(6)
 
         super(AcessoMedico, self).save(*args, **kwargs)
-    ## status exame
+    ## método para manipular o status do acesso médico aos exames
     @property
     def status(self):
         return 'Expirado' if timezone.now() > (self.criado_em + timedelta(hours=self.tempo_de_acesso)) else 'Ativo'
